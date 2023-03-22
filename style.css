@@ -1,18 +1,45 @@
 .game {
-    position: relative;
-    /* background-color: #8d8a8a; */
-    padding-top: 170px;
+    background-color: #eec88a;
+    border: #5a2506 5px dotted;
+    padding: 20px;
+}
+
+
+.wizard {
+    width: 10%;
+    height: 10%;
+    margin: 0 auto;
+    display: block;
+    animation: wizardMove 5s linear 2s infinite alternate;
+}
+
+.game-init-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding-bottom: 5px;
+    width: 100%;
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: Arial, sans-serif;
+    font-size: 3.5vmin;
+    font-weight: lighter;
+    text-align: center;
+    background: linear-gradient(to right, rgba(150, 111, 51, 0.4), rgba(150, 111, 51, 0.2)),
+        repeating-linear-gradient(to right, #eec487, #eec487 3vmin, #f3cf9a 3vmin, #f3cf9a 6vmin, #f8d8a2 6vmin, #f8d8a2 9vmin, #f1ca88 9vmin, #f1ca88 12vmin, #f4d09e 12vmin, #f4d09e 15vmin, #faddb0 15vmin, #faddb0 18vmin, #eec88a 18vmin, #eec88a 21vmin);
 }
 
 .title {
-    margin: 5% auto;
-    padding: 5vmin;
-    width: 70%;
+    margin: 10px auto;
+    padding: 15px;
+    width: 50%;
 
     border-radius: 10px;
     color: rgba(0, 0, 0, 0.5);
     font-family: Arial, sans-serif;
-    font-size: 7.5vmin;
+    font-size: 3.5vmin;
     font-weight: lighter;
     text-align: center;
     background: linear-gradient(to right, rgba(150, 111, 51, 0.4), rgba(150, 111, 51, 0.2)),
@@ -42,21 +69,213 @@
     z-index: 1;
 }
 
+
+.game-wrapper .game-title {
+    margin: 5% auto;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+    text-align: center;
+    background: linear-gradient(to right, rgba(150, 111, 51, 0.4), rgba(150, 111, 51, 0.2)),
+        repeating-linear-gradient(to right, #eec487, #eec487 3vmin, #f3cf9a 3vmin, #f3cf9a 6vmin, #f8d8a2 6vmin, #f8d8a2 9vmin, #f1ca88 9vmin, #f1ca88 12vmin, #f4d09e 12vmin, #f4d09e 15vmin, #faddb0 15vmin, #faddb0 18vmin, #eec88a 18vmin, #eec88a 21vmin);
+}
+
+.init-title {
+    position: relative;
+    display: block;
+    margin: 20px auto;
+    width: 400px;
+    height: 50px;
+    padding: 20px;
+    font-size: 30px;
+    background-color: #eec88a;
+    border: none;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.init-input_1,
+.init-input_2 {
+    width: 150px;
+    height: 35px;
+    margin-top: 10px;
+    font-size: 25px;
+    background-color: #eec88a;
+    border: none;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+
+}
+
+.game-form-input {
+    width: 150px;
+    height: 35px;
+    font-size: 25px;
+    background-color: #eec88a;
+    border: 2px rgb(58, 3, 3) solid;
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
 .overlay {
     position: fixed;
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: -5px;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(150, 111, 51, 0.2);
+    background-color: #eec88a;
+    border: #5a2506 5px dotted;
     z-index: 3;
 }
 
 .overlay .game-wrapper {
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     z-index: 4;
-    left: 50%;
     top: 150px;
     width: 752px;
-    transform: translateX(-50%);
+
+}
+
+.game-wrapper .check {
+    position: relative;
+    text-decoration: none;
+    display: block;
+    color: white;
+    padding: 10px 30px;
+    margin: 20px auto;
+    border-radius: 15px;
+    font-family: 'Montserrat',
+        sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background-color: #5a2506;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+    transition: .5s;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* close btn */
+.overlay .cancel-game {
+    text-decoration: none;
+    color: #6b5770;
+    background-image: linear-gradient(90deg, #fd7f34, #eec487);
+    display: inline-block;
+    padding: 14px 30px;
+    left: -20px;
+    border: 1px solid;
+    position: relative;
+    font-family: 'Montserrat',
+        sans-serif;
+    z-index: 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 0;
+    outline: none;
+    font-size: 25px;
+    user-select: none;
+    appearance: none;
+    touch-action: manipulation;
+    cursor: pointer;
+}
+
+.overlay .cancel-game:before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    background: linear-gradient(90deg, #fd7f34, #eec487);
+    z-index: -2;
+    transition: .4s;
+    border-radius: 5px;
+}
+
+.overlay .cancel-game:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #fff, #fff);
+    z-index: -1;
+    transition: .4s;
+    border-radius: 4px;
+}
+
+.overlay .cancel-game:hover {
+    color: #fff;
+    transition: .3s;
+}
+
+.overlay .cancel-game:hover:after {
+    background: linear-gradient(90deg, #fd7f34, #eec487);
+}
+
+.overlay .cancel-game:active:after {
+    background: linear-gradient(90deg, #d96d2d, #eec487);
+}
+
+.overlay .cancel-game:focus-visible {
+    box-shadow: 0 0 0 3px #fd7f34;
+}
+
+.overlay .cancel-game:disabled {
+    pointer-events: none;
+}
+
+.overlay .cancel-game:disabled:before {
+    filter: grayscale(100%);
+}
+
+.result-text {
+    margin: 10px auto;
+    padding: 15px;
+    width: 50%;
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: Arial, sans-serif;
+    font-size: 3.5vmin;
+    font-weight: lighter;
+    text-align: center;
+    background: linear-gradient(to right, rgba(150, 111, 51, 0.4), rgba(150, 111, 51, 0.2)),
+        repeating-linear-gradient(to right, #eec487, #eec487 3vmin, #f3cf9a 3vmin, #f3cf9a 6vmin, #f8d8a2 6vmin, #f8d8a2 9vmin, #f1ca88 9vmin, #f1ca88 12vmin, #f4d09e 12vmin, #f4d09e 15vmin, #faddb0 15vmin, #faddb0 18vmin, #eec88a 18vmin, #eec88a 21vmin);
+}
+
+/* animation */
+
+@keyframes wizardMove {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(30px)
+    }
+
+    50% {
+        transform: translateY(-8px)
+    }
+
+    75% {
+        transform: translateX(-20px)
+    }
 }

@@ -11,24 +11,48 @@
 
 <body>
     <div class="game">
-        <div class="title">Попробуй угадать загаданное число...</div>
-        <button class="start-game">
-            Начать игру
-        </button>
 
-        <div class="overlay fade">
+        <div class="game-init">
+            <div class="game-init-form">
+                <div class="init-title">Введите диапазон чисел чтобы я мог загадать число</div>
+                <label for="init-input_1">Начало диапазона</label>
+                <input class="init-input_1" name="init-input_1" type="number">
+                <label for="init-input_2">Конец диапазона </label>
+                <input class="init-input_2" name="init-input_2" type="number">
+            </div>
+            <img src="wizard.png" alt="Wizard" class="wizard">
+            <div class="title">Начинайте игру чтобы угадать загаданное число исходя из вашего диапазона...</div>
+
+            <button class="start-game">
+                Начать игру
+            </button>
+
+
+
+
+
+        </div>
+
+
+        <div class="overlay">
             <div class="game-wrapper">
+
                 <button class="cancel-game">
-                    EXIT
+
+                    &times; Покинуть игру
                 </button>
+                <div class="result-text"></div>
                 <div class="game-title">
-                    Привет, я загадал число от min до max вашего диапазона. Попробуй угадать его за 5 попыток!</div>
+                    Привет, я загадал число от <div class="min"></div> до <div class="max"></div> вашего диапазона.
+                    Попробуй угадать его за 5 попыток!</div>
                 <div class="game-form">
                     <input class="game-form-input" name="input-game" type="number">
-                    <button class="CHECK">CHECK</button>
-                    <div class="result-text"></div>
+
+
 
                 </div>
+                <button class="check">CHECK</button>
+                <img src="wizard.png" alt="Wizard" class="wizard">
             </div>
         </div>
     </div>
