@@ -23,8 +23,8 @@ function close() {
             'Введите диапазон чисел чтобы я мог загадать число';
         document.querySelector('.init-title').style.color =
             'rgba(0, 0, 0, 0.5)';
-        minInput.value = 0;
-        maxInput.value = 0;
+        minInput.value = '';
+        maxInput.value = '';
     });
 }
 
@@ -44,13 +44,13 @@ function getValue() {
                 'Вы ввели неверный диапазон, введите пожалуйста только целые и положительные числа!';
             title.style.color = 'red';
             title.style.fontSize = '20px';
-            minValue = 0;
+            minValue = '';
             document.querySelector('.game-title').innerHTML =
                 'Вы ввели неверный диапазон, введите пожалуйста только целые и положительные числа!';
         }
         minNum.innerHTML = minValue;
-        updateRandomNum();
-        close();
+        // updateRandomNum();
+        // close();
     });
     maxInput.addEventListener('change', function () {
         maxValue = maxInput.value;
@@ -65,39 +65,53 @@ function getValue() {
         }
         maxNum.innerHTML = maxValue;
         updateRandomNum();
-        close();
+        // close();
     });
     let alreadyClicked = false;
     function updateRandomNum() {
         if (!alreadyClicked) {
             alreadyClicked = true;
         }
-        randomNum = Math.floor(Math.random() * maxValue + minValue);
+        randomNum =
+            Math.floor(Math.random() * (+maxValue - +minValue + 1)) + +minValue;
 
-        console.log('max' + maxValue + '' + 'min' + minValue);
+        console.log(
+            'max' + maxValue + '' + 'min' + minValue + 'random ' + randomNum
+        );
     }
 
-    let checkNum = document.querySelector('.check');
+    let checkNum = document.querySelector('.check'),
+        attempt = 5;
 
-    checkNum.addEventListener('click', function () {
-        updateRandomNum;
+    checkNum.addEventListener('click', getAttempt);
+
+    function getAttempt() {
+        attempt--;
         let result = document.querySelector('.result-text'),
             gameInput = document.querySelector('.game-form-input'),
             difference_1 = Math.abs(randomNum - gameInput.value),
             difference_2 = Math.abs(100 - randomNum - gameInput.value);
 
-        if (randomNum == gameInput.value) {
-            result.innerHTML = `Поздравляю! Вы угадали задуманное число за ${3} попыток`;
-            result.style.color = 'green';
-        } else if (difference_1 < difference_2) {
-            result.innerHTML = `Не угадал, но теплее!!! Осталось ${5} попыток`;
-        } else {
-            result.innerHTML = `Не угадал, холоднее… Осталось ${4} попыток`;
-        }
-
         console.log('ran' + randomNum);
         console.log('game' + gameInput.value);
-    });
+
+        if (+randomNum == +gameInput.value) {
+            result.innerHTML = `Поздравляю! Вы угадали задуманное число за ${
+                5 - attempt
+            } попыток`;
+            result.style.color = 'green';
+        } else if (difference_1 < difference_2) {
+            result.innerHTML = `Не угадал, холоднее… Осталось ${attempt} попыток`;
+        } else {
+            result.innerHTML = `Не угадал, но теплее!!! Осталось ${attempt} попыток`;
+        }
+
+        if (attempt <= 0) {
+            result.innerHTML = `Вы проиграли`;
+            attempt = 0;
+            result.style.color = 'red';
+        }
+    }
     updateRandomNum();
 }
 
