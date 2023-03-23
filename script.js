@@ -1,6 +1,8 @@
 let minInput = document.querySelector('.init-input_1'),
     maxInput = document.querySelector('.init-input_2'),
-    randomNum;
+    randomNum,
+    attempt = 5,
+    result = document.querySelector('.result-text');
 
 function startGame() {
     let startBtn = document.querySelector('.start-game');
@@ -25,6 +27,8 @@ function close() {
             'rgba(0, 0, 0, 0.5)';
         minInput.value = '';
         maxInput.value = '';
+        attempt = 5;
+        result.innerHTML = '';
     });
 }
 
@@ -80,15 +84,13 @@ function getValue() {
         );
     }
 
-    let checkNum = document.querySelector('.check'),
-        attempt = 5;
+    let checkNum = document.querySelector('.check');
 
     checkNum.addEventListener('click', getAttempt);
 
     function getAttempt() {
         attempt--;
-        let result = document.querySelector('.result-text'),
-            gameInput = document.querySelector('.game-form-input'),
+        let gameInput = document.querySelector('.game-form-input'),
             difference_1 = Math.abs(randomNum - gameInput.value),
             difference_2 = Math.abs(100 - randomNum - gameInput.value);
 
@@ -98,7 +100,7 @@ function getValue() {
         if (+randomNum == +gameInput.value) {
             result.innerHTML = `Поздравляю! Вы угадали задуманное число за ${
                 5 - attempt
-            } попыток`;
+            } попытки`;
             result.style.color = 'green';
         } else if (difference_1 < difference_2) {
             result.innerHTML = `Не угадал, холоднее… Осталось ${attempt} попыток`;
