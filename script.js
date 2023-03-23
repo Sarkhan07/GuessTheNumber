@@ -1,7 +1,10 @@
+let minInput = document.querySelector('.init-input_1'),
+    maxInput = document.querySelector('.init-input_2'),
+    randomNum;
+
 function startGame() {
     let startBtn = document.querySelector('.start-game');
     let overlay = document.querySelector('.overlay');
-    let cancel = document.querySelector('.cancel-game');
 
     startBtn.addEventListener('click', function () {
         overlay.style.display = 'flex';
@@ -20,8 +23,6 @@ function close() {
             'Введите диапазон чисел чтобы я мог загадать число';
         document.querySelector('.init-title').style.color =
             'rgba(0, 0, 0, 0.5)';
-        let minInput = document.querySelector('.init-input_1'),
-            maxInput = document.querySelector('.init-input_2');
         minInput.value = 0;
         maxInput.value = 0;
     });
@@ -32,11 +33,9 @@ close();
 function getValue() {
     let minNum = document.querySelector('.min'),
         maxNum = document.querySelector('.max'),
-        minInput = document.querySelector('.init-input_1'),
-        maxInput = document.querySelector('.init-input_2'),
         title = document.querySelector('.init-title'),
-        maxValue,
-        minValue;
+        minValue,
+        maxValue;
 
     minInput.addEventListener('change', function () {
         minValue = minInput.value;
@@ -57,7 +56,7 @@ function getValue() {
         maxValue = maxInput.value;
         if (maxValue < 0 || maxValue % 1 !== 0) {
             title.innerHTML =
-                'Вы ввели неверный диапазон, нельзя указать отрицательное и нецелое число!';
+                'Вы ввели неверный диапазон, введите пожалуйста только целые и положительные числа!';
             title.style.color = 'red';
             title.style.fontSize = '20px';
             maxValue = 0;
@@ -68,20 +67,38 @@ function getValue() {
         updateRandomNum();
         close();
     });
-
+    let alreadyClicked = false;
     function updateRandomNum() {
-        let randomNum = Math.floor(
-            Math.random() * (maxValue - minValue) + minValue
-        );
-        let result = document.querySelector('.result-text');
-        result.innerHTML = randomNum;
+        if (!alreadyClicked) {
+            alreadyClicked = true;
+        }
+        randomNum = Math.floor(Math.random() * maxValue + minValue);
+
+        console.log('max' + maxValue + '' + 'min' + minValue);
     }
 
-    console.log(maxValue);
+    let checkNum = document.querySelector('.check');
+
+    checkNum.addEventListener('click', function () {
+        updateRandomNum;
+        let result = document.querySelector('.result-text'),
+            gameInput = document.querySelector('.game-form-input'),
+            difference_1 = Math.abs(randomNum - gameInput.value),
+            difference_2 = Math.abs(100 - randomNum - gameInput.value);
+
+        if (randomNum == gameInput.value) {
+            result.innerHTML = `Поздравляю! Вы угадали задуманное число за ${3} попыток`;
+            result.style.color = 'green';
+        } else if (difference_1 < difference_2) {
+            result.innerHTML = `Не угадал, но теплее!!! Осталось ${5} попыток`;
+        } else {
+            result.innerHTML = `Не угадал, холоднее… Осталось ${4} попыток`;
+        }
+
+        console.log('ran' + randomNum);
+        console.log('game' + gameInput.value);
+    });
+    updateRandomNum();
 }
 
 getValue();
-
-// function randomNumber() {
-//     let
-// }
