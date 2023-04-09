@@ -91,8 +91,7 @@ function getValue() {
     function getAttempt() {
         attempt--;
         let gameInput = document.querySelector('.game-form-input'),
-            difference_1 = Math.abs(randomNum - gameInput.value),
-            difference_2 = Math.abs(100 - randomNum - gameInput.value);
+            difference_1 = Math.abs(randomNum - gameInput.value);
 
         console.log('ran' + randomNum);
         console.log('game' + gameInput.value);
@@ -102,12 +101,14 @@ function getValue() {
                 5 - attempt
             } попытки`;
             result.style.color = 'green';
-        } else if (difference_1 < difference_2) {
-            result.innerHTML = `Не угадал, холоднее… Осталось ${attempt} попыток`;
+        } else if (
+            +randomNum !== +gameInput.value &&
+            difference_1 <= randomNum / 2
+        ) {
+            result.innerHTML = `Не угадал, но тепло, продолжай… Осталось ${attempt} попыток`;
         } else {
-            result.innerHTML = `Не угадал, но теплее!!! Осталось ${attempt} попыток`;
+            result.innerHTML = `Не угадал, но холодно!!! Осталось ${attempt} попыток`;
         }
-
         if (attempt <= 0) {
             result.innerHTML = `Вы проиграли`;
             attempt = 0;
